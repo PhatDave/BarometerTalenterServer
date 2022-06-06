@@ -81,7 +81,7 @@
                         let level = 0;
                         $.each(tree.talents, (i) => {
 	                        let talent = tree.talents[i];
-                            if (talent.level != level) {
+                            if (talent.level !== level) {
                                 if (level > 0) {
                                     talentTree.append(talentRowContainer);
                                 }
@@ -101,25 +101,21 @@
             }
 
 	        createCharacterContainer(character) {
-	            let element = `
-	            <div class="col-6 characterContainer d-flex flex-column justify-content-start px-1 py-3">
+	            let element = `<div class="col-12 characterContainer d-flex flex-column justify-content-start px-1 py-3">
 					<h2 class="characterName text-center">${character.name}</h2>
-				</div>
-				`;
+				</div>`;
 
 	            return $(element);
 	        }
 
 	        createTalentTreeContainer() {
-	            let element = `
-					<div class="characterTreesContainer d-flex flex-row justify-content-between">
+	            let element = `<div class="characterTreesContainer d-flex flex-row justify-content-between">
 					</div>`;
 	            return $(element);
 	        }
 
 	        createTalentTree(ttree) {
-	            let element = `
-					<div class="talentTree d-flex flex-column justify-content-start px-1 flex-even">
+	            let element = `<div class="talentTree d-flex flex-column justify-content-start px-1 flex-even">
 						<div class="talentTreeName text-center">
 							<h3>${ttree.name}</h3>
 						</div>
