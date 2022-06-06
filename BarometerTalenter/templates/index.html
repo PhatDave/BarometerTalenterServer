@@ -106,6 +106,13 @@
                                 if (level > 0) {
                                     talentTree.append(talentRowContainer);
                                 }
+                                if (talent.level - level > 1 && talent.level > 1) {
+                                    for (let i = 1; i < talent.level - level; i++) {
+	                                    let rowString = treeString + "_" + (level + i);
+	                                    talentRowContainer = this.createTalentTreeRowContainer(rowString);
+	                                    talentTree.append(talentRowContainer);
+                                    }
+                                }
                                 level = talent.level;
                                 let rowString = treeString + "_" + level
                                 talentRowContainer = this.createTalentTreeRowContainer(rowString);
@@ -161,7 +168,7 @@
             }
 
             createCharacterContainer(character, characterString) {
-                let element = `<div id="${characterString}" class="col-6 characterContainer d-flex flex-column justify-content-start px-1 py-3">
+                let element = `<div id="${characterString}" class="col-12 characterContainer d-flex flex-column justify-content-start px-1 py-3">
 					<h2 class="characterName text-center">${character.name}</h2>
 				</div>`;
 
