@@ -82,9 +82,11 @@
                     const characterContainer = this.createCharacterContainer(character);
                     const talentTreeContainer = this.createTalentTreeContainer();
                     characterContainer.append(talentTreeContainer);
+                    let characterString = character.name + ":";
 
                     $.each(character.trees, (treeKey) => {
                         let tree = character.trees[treeKey];
+                        let treeString = characterString + tree.name + ":";
                         const talentTree = this.createTalentTree(tree);
                         let talentRowContainer;
 
@@ -95,6 +97,8 @@
                                 if (level > 0) {
                                     talentTree.append(talentRowContainer);
                                 }
+                                let talentString = treeString + ":" + talent.level + ":" + talent.name;
+                                console.log(talentString);
                                 level = talent.level;
                                 talentRowContainer = this.createTalentTreeRowContainer();
                             }
@@ -104,8 +108,7 @@
                         talentTree.append(talentRowContainer);
 
                         talentTreeContainer.append(talentTree);
-                    })
-
+                    });
                     container.append(characterContainer);
                 });
                 $(".talent").tooltip();
@@ -113,17 +116,14 @@
 				$('.talentRowContainer').droppable({
 					drop: function(ev, ui) {
 						$(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
+
+                        let movedElement = ui.draggable;
+				        let dropzone = $(this);
+
+				        console.log(dropzone);
+				        console.log(movedElement);
 					}
 				});
-                // $(".talentRowContainer").droppable({
-                //     drop: function (event, ui) {
-                //         let movedElement = ui.draggable;
-                //         let dropzone = $(this);
-
-                //         console.log(dropzone);
-				// 		console.log(movedElement);
-                //     }
-                // });
             }
 
             createCharacterContainer(character) {
@@ -156,7 +156,7 @@
             }
 
             createTalent(talent) {
-                let element = `<div id="${talent.name}" class="talent py-3 flex-even text-center">
+                let element = `<div class="talent py-3 flex-even text-center">
 							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
 						</div>`
                 return $(element);
