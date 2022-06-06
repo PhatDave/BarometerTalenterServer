@@ -72,7 +72,12 @@
 
         class UIManager {
             constructor(data) {
-                this.data = JSON.parse(data);
+                // If data is a string then do nothing
+				if (typeof data === "string") {
+					this.data = JSON.parse(data);
+				} else {
+					this.data = data;
+				}
             }
 
             build(container) {
