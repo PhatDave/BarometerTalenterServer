@@ -79,15 +79,15 @@
                 $.each(this.data, (key) => {
                     let character = this.data[key];
 
-                    const characterContainer = this.createCharacterContainer(character);
+                    let characterString = character.name + ":";
+                    const characterContainer = this.createCharacterContainer(character, characterString);
                     const talentTreeContainer = this.createTalentTreeContainer();
                     characterContainer.append(talentTreeContainer);
-                    let characterString = character.name + ":";
 
                     $.each(character.trees, (treeKey) => {
                         let tree = character.trees[treeKey];
                         let treeString = characterString + tree.name + ":";
-                        const talentTree = this.createTalentTree(tree);
+                        const talentTree = this.createTalentTree(tree, treeString);
                         let talentRowContainer;
 
                         let level = 0;
@@ -97,12 +97,12 @@
                                 if (level > 0) {
                                     talentTree.append(talentRowContainer);
                                 }
-                                let talentString = treeString + ":" + talent.level + ":" + talent.name;
-                                console.log(talentString);
                                 level = talent.level;
-                                talentRowContainer = this.createTalentTreeRowContainer();
+                                let rowString = treeString + level + ":";
+                                talentRowContainer = this.createTalentTreeRowContainer(rowString);
                             }
-                            let talentElement = this.createTalent(talent);
+                            let talentString = treeString + level + ":" + talent.name;
+                            let talentElement = this.createTalent(talent, talentString);
                             talentRowContainer.append(talentElement);
                         })
                         talentTree.append(talentRowContainer);
@@ -126,8 +126,8 @@
 				});
             }
 
-            createCharacterContainer(character) {
-                let element = `<div class="col-6 characterContainer d-flex flex-column justify-content-start px-1 py-3">
+            createCharacterContainer(character, characterString) {
+                let element = `<div id="${characterString}" class="col-6 characterContainer d-flex flex-column justify-content-start px-1 py-3">
 					<h2 class="characterName text-center">${character.name}</h2>
 				</div>`;
 
@@ -140,8 +140,8 @@
                 return $(element);
             }
 
-            createTalentTree(ttree) {
-                let element = `<div class="talentTree d-flex flex-column justify-content-start px-1 flex-even">
+            createTalentTree(ttree, ttreeString) {
+                let element = `<div id="${ttreeString}" class="talentTree d-flex flex-column justify-content-start px-1 flex-even">
 						<div class="talentTreeName text-center">
 							<h3>${ttree.name}</h3>
 						</div>
@@ -149,14 +149,14 @@
                 return $(element);
             }
 
-            createTalentTreeRowContainer() {
-                let element = `<div class="talentRowContainer d-flex flex-row justify-content-evenly">
+            createTalentTreeRowContainer(rowString) {
+                let element = `<div id="${rowString}" class="talentRowContainer d-flex flex-row justify-content-evenly">
 					</div>`;
                 return $(element);
             }
 
-            createTalent(talent) {
-                let element = `<div class="talent py-3 flex-even text-center">
+            createTalent(talent, talentString) {
+                let element = `<div id="${talentString}" class="talent py-3 flex-even text-center">
 							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
 						</div>`
                 return $(element);
