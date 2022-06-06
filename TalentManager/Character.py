@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
 
-from Constants import ABSOLUTE_ROOT
 from TalentManager.TalentTree import TalentTree
 
 
 class Character:
-    def __init__(self, name):
+    def __init__(self, name, root):
         self.characterSubstitutionTable = {
             'securityofficer': "Security",
             'captain': "Captain",
@@ -18,7 +17,8 @@ class Character:
         self.name = name
 
         alternateName = self.characterSubstitutionTable[self.name]
-        self.fileName = f'{ABSOLUTE_ROOT}\\{alternateName}\\Talents{alternateName}.xml'
+        self.root = root
+        self.fileName = f'{self.root}\\{alternateName}\\Talents{alternateName}.xml'
         self.fileTree = None
         self.talentTrees = []
 

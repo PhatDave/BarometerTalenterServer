@@ -1,22 +1,27 @@
 import xml.etree.ElementTree as ET
 
 from TalentManager.Character import Character
-from Constants import ABSOLUTE_ROOT
 
 
 class TalentManager:
-    def __init__(self):
+    def __init__(self, root):
+        self.root = root
+        if 'Barotrauma' not in self.root:
+            return
+        self.root += f'\\Content\\Talents'
+
         self.talents = 'TalentTrees.xml'
         self.talentsTree = None
         self.characters = {}
+        self.loadAll()
 
     def loadAll(self):
-        self.talentsTree = ET.parse(f'{ABSOLUTE_ROOT}\\{self.talents}')
+        self.talentsTree = ET.parse(f'{self.root}\\{self.talents}')
         root = self.talentsTree.getroot()
         for talentTree in root:
             character = talentTree.attrib['jobidentifier']
             if character not in self.characters.keys():
-                char = Character(character)
+                char = Character(character, root=self.root)
                 char.parse(talentTree)
                 self.characters[character] = char
         for character in self.characters.values():
@@ -86,7 +91,7 @@ class TalentManager:
         return character, tree, row, talent
 
     def save(self):
-        with open(f'{ABSOLUTE_ROOT}\\{self.talents}', 'wb') as f:
+        with open(f'{self.root}\\{self.talents}', 'wb') as f:
             self.talentsTree.write(f)
 
     def __str__(self):
