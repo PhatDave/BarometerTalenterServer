@@ -2,12 +2,12 @@ locale = {
     "multitasker": {
         "name": "multitasker",
         "localeName": "Multitasker",
-        "description": "Whenever you gain a skill point, if it’s not for the same skill as the last skill point gained, gain an additional skill point.\nGain an additional 20% stattypenames.repairspeed."
+        "description": "Whenever you gain a skill point, if it’s not for the same skill as the last skill point gained, gain an additional skill point.\nGain an additional 20% Repair Speed."
     },
     "apprenticeship": {
         "name": "apprenticeship",
         "localeName": "Apprenticeship",
-        "description": "Whenever another allied character gains a skill point, you have a 20% chance to also gain a skill point in that skill.\nGain an additional 15% stattypenames.maximumhealthmultiplier."
+        "description": "Whenever another allied character gains a skill point, you have a 20% chance to also gain a skill point in that skill.\nGain an additional 15% Maximum Health."
     },
     "standanddeliver": {
         "name": "standanddeliver",
@@ -52,7 +52,7 @@ locale = {
     "crewlayabout": {
         "name": "crewlayabout",
         "localeName": "Crew Layabout",
-        "description": "Lose 40% stattypenames.repairspeed.\nSuffer a reduction of 15 to all skills.\nAllies near you repair 25% faster and gain a bonus of 10 to all skills."
+        "description": "Lose 40% Repair Speed.\nSuffer a reduction of 15 to all skills.\nAllies near you repair 25% faster and gain a bonus of 10 to all skills."
     },
     "graduationceremony": {
         "name": "graduationceremony",
@@ -122,7 +122,7 @@ locale = {
     "bountyhunter": {
         "name": "bountyhunter",
         "localeName": "Bounty Hunter",
-        "description": "Unlock recipe: .\nWhenever you or an allied crewmember kills a monster, your crew gains additional marks equal to 25% of the creature's maximum health."
+        "description": "Unlock recipe: Handcannon, Handcannon Round.\nWhenever you or an allied crewmember kills a monster, your crew gains additional marks equal to 25% of the creature's maximum health."
     },
     "travelingtradesman": {
         "name": "travelingtradesman",
@@ -162,12 +162,12 @@ locale = {
     "maintenanceroutine": {
         "name": "maintenanceroutine",
         "localeName": "Maintenance Routine",
-        "description": "In addition to other Inspiration bonuses, the ordered character also gains the following attributes:\n+20% stattypenames.repairspeed\n+20% stattypenames.repairtoolstructurerepairmultiplier\n+35% stattypenames.skillgainspeed"
+        "description": "In addition to other Inspiration bonuses, the ordered character also gains the following attributes:\n+20% Repair Speed\n+20% Hull Repair Speed\n+35% Skill Gain Speed"
     },
     "inspiretobattle": {
         "name": "inspiretobattle",
         "localeName": "Inspire to Battle",
-        "description": "In addition to other Inspiration bonuses, the ordered character also gains the following attributes:\n+30% Stun resistance\n+30% stattypenames.meleeattackspeed\n+20% stattypenames.rangedattackspeed\n+20% stattypenames.turretattackspeed"
+        "description": "In addition to other Inspiration bonuses, the ordered character also gains the following attributes:\n+30% Stun resistance\n+30% Melee Attack Speed\n+20% Ranged Fire Rate\n+20% Turret Fire Rate"
     },
     "trustbuilding": {
         "name": "trustbuilding",
@@ -192,7 +192,7 @@ locale = {
     "fieldmedic": {
         "name": "fieldmedic",
         "localeName": "Field Medic",
-        "description": "Whenever you complete a mission, if all crewmembers survived, gain 3 points in Medical skill.\nThe deaths of assistants do not count.\nGain an additional 20% stattypenames.maximumhealthmultiplier."
+        "description": "Whenever you complete a mission, if all crewmembers survived, gain 3 points in Medical skill.\nThe deaths of assistants do not count.\nGain an additional 20% Maximum Health."
     },
     "curiosity": {
         "name": "curiosity",
@@ -207,7 +207,7 @@ locale = {
     "atmosmachine": {
         "name": "atmosmachine",
         "localeName": "Atmos Machine",
-        "description": "When you deconstruct an alien artifact, there is a 20% chance it will instead transform into a random alien item.\nWhenever you finish a mission, your crew gains 10% additional mission experience for each large alien artifact on board your ship, up to 20%.\nGain an additional 150% stattypenames.deconstructorspeedmultiplier."
+        "description": "When you deconstruct an alien artifact, there is a 20% chance it will instead transform into a random alien item.\nWhenever you finish a mission, your crew gains 10% additional mission experience for each large alien artifact on board your ship, up to 20%.\nGain an additional 150% Deconstructor Speed."
     },
     "alienhoarder": {
         "name": "alienhoarder",
@@ -282,12 +282,12 @@ locale = {
     "militaryapplications": {
         "name": "militaryapplications",
         "localeName": "Military Applications",
-        "description": "Unlock recipe: .\nGain a bonus of 20 to Weapons."
+        "description": "Unlock recipe: Depleted Fuel, Depleted Fuel Coilgun Ammunition Box.\nGain a bonus of 20 to Weapons."
     },
     "strengthenedalloys": {
         "name": "strengthenedalloys",
         "localeName": "Strengthened Alloys",
-        "description": "Unlock recipe: .\nGain a bonus of 20 to Mechanical Engineering."
+        "description": "Unlock recipe: Hardened Wrench, Hardened Screwdriver, Hardened Crowbar, Hardened Diving Knife.\nGain a bonus of 20 to Mechanical Engineering."
     },
     "castledoctrine": {
         "name": "castledoctrine",
@@ -297,7 +297,7 @@ locale = {
     "armsdealer": {
         "name": "armsdealer",
         "localeName": "Arms Dealer",
-        "description": "Unlock recipe: Depleted Fuel SMG Magazine,\nDepleted Fuel Revolver Round.\nWhenever you finish at least one mission, gain the following items as an additional reward:\n4x Magnesium\n2x Steel Bar\n2x Copper"
+        "description": "Unlock recipe: Depleted Fuel SMG Magazine, Depleted Fuel Revolver Round.\nWhenever you finish at least one mission, gain the following items as an additional reward:\n4x Magnesium\n2x Steel Bar\n2x Copper"
     },
     "nuclearoption": {
         "name": "nuclearoption",
@@ -337,7 +337,7 @@ locale = {
     "melodicrespite": {
         "name": "melodicrespite",
         "localeName": "Melodic Respite",
-        "description": "When you play a guitar, you and allies near you gain the following attributes for up to 480 seconds:\n+15% stattypenames.attackmultiplier\n+15% stattypenames.repairspeed\n+15% Physical damage resistance"
+        "description": "When you play a guitar, you and allies near you gain the following attributes for up to 480 seconds:\n+15% Attack Power\n+15% Repair Speed\n+15% Physical damage resistance"
     },
     "optimizedpowerflow": {
         "name": "optimizedpowerflow",
@@ -367,7 +367,7 @@ locale = {
     "collegeathletics": {
         "name": "collegeathletics",
         "localeName": "College Athletics",
-        "description": "Unlock recipe: Cargo Scooter.\nGain an additional 35% stattypenames.maximumhealthmultiplier.\nGain an additional 30% stattypenames.swimmingspeed.\nGain an additional 20% stattypenames.walkingspeed."
+        "description": "Unlock recipe: Cargo Scooter.\nGain an additional 35% Maximum Health.\nGain an additional 30% Swimming Speed.\nGain an additional 20% Walking Speed."
     },
     "hazardousmaterials": {
         "name": "hazardousmaterials",
@@ -462,7 +462,7 @@ locale = {
     "artisansmith": {
         "name": "artisansmith",
         "localeName": "Artisan Smith",
-        "description": "Unlock recipe: .\nTools you fabricate are of 1 higher quality.\nGain a bonus of 30 to Mechanical Engineering."
+        "description": "Unlock recipe: Dementonite Wrench, Dementonite Crowbar, Dementonite Screwdriver, Dementonite Diving Knife.\nTools you fabricate are of 1 higher quality.\nGain a bonus of 30 to Mechanical Engineering."
     },
     "firstaidtraining": {
         "name": "firstaidtraining",
@@ -472,12 +472,12 @@ locale = {
     "physicalconditioning": {
         "name": "physicalconditioning",
         "localeName": "Physical Conditioning",
-        "description": "Gain an additional 25% stattypenames.meleeattackspeed.\nGain an additional 15% stattypenames.movementspeed.\nGain an additional 40% Oxygen low resistance."
+        "description": "Gain an additional 25% Melee Attack Speed.\nGain an additional 15% Movement Speed.\nGain an additional 40% Oxygen low resistance."
     },
     "scavenger": {
         "name": "scavenger",
         "localeName": "Scavenger",
-        "description": "Whenever you open a container outside your submarine for the first time, you have a 20% chance of finding additional items.\nGain an additional 50% stattypenames.buffdurationmultiplier."
+        "description": "Whenever you open a container outside your submarine for the first time, you have a 20% chance of finding additional items.\nGain an additional 50% Buff Duration."
     },
     "buccaneer": {
         "name": "buccaneer",
@@ -487,12 +487,12 @@ locale = {
     "enforcer": {
         "name": "enforcer",
         "localeName": "Enforcer",
-        "description": "Unlock recipe: Shotgun Shell.\nGain an additional 25% stattypenames.maximumhealthmultiplier."
+        "description": "Unlock recipe: Shotgun Shell.\nGain an additional 25% Maximum Health."
     },
     "beatcop": {
         "name": "beatcop",
         "localeName": "Beat Cop",
-        "description": "You can tackle other characters by ragdolling into them at high speeds.\nInflict 25% more stun.\nGain an additional 25% stattypenames.repairspeed."
+        "description": "You can tackle other characters by ragdolling into them at high speeds.\nInflict 25% more stun.\nGain an additional 25% Repair Speed."
     },
     "bythebook": {
         "name": "bythebook",
@@ -517,7 +517,7 @@ locale = {
     "warlord": {
         "name": "warlord",
         "localeName": "Warlord",
-        "description": "Unlock recipe: .\nWhenever you attack with any weapon, your attack has a 5% chance of becoming twice as powerful."
+        "description": "Unlock recipe: Assault Rifle, Assault Rifle Magazine.\nWhenever you attack with any weapon, your attack has a 5% chance of becoming twice as powerful."
     },
     "dualspecops": {
         "name": "dualspecops",
