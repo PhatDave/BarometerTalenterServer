@@ -493,7 +493,8 @@ Gain a bonus of 20 to Mechanical Engineering.""",
 					{
 						"name": "armsdealer",
 						"localizedName": "Arms Dealer",
-						"description": """Unlock recipe: .
+						"description": """Unlock recipe: Depleted Fuel SMG Magazine,
+Depleted Fuel Revolver Round.
 Whenever you finish at least one mission, gain the following items as an additional reward:
 4x Magnesium
 2x Steel Bar

@@ -297,7 +297,7 @@ locale = {
     "armsdealer": {
         "name": "armsdealer",
         "localeName": "Arms Dealer",
-        "description": "Unlock recipe: .\nWhenever you finish at least one mission, gain the following items as an additional reward:\n4x Magnesium\n2x Steel Bar\n2x Copper"
+        "description": "Unlock recipe: Depleted Fuel SMG Magazine,\nDepleted Fuel Revolver Round.\nWhenever you finish at least one mission, gain the following items as an additional reward:\n4x Magnesium\n2x Steel Bar\n2x Copper"
     },
     "nuclearoption": {
         "name": "nuclearoption",
