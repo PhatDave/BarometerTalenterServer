@@ -19,7 +19,11 @@ class Character:
         alternateName = self.characterSubstitutionTable[self.name]
         self.root = root
         self.fileName = f'{self.root}\\{alternateName}\\Talents{alternateName}.xml'
+        self.afflictionsFile = f'{self.root}\\{alternateName}\\Afflictions{alternateName}.xml'
+
         self.fileTree = None
+        self.afflictionFileTree = None
+
         self.talentTrees = []
 
     def parse(self, tree):
@@ -32,8 +36,12 @@ class Character:
     def loadTalentDetails(self):
         self.fileTree = ET.parse(self.fileName)
         root = self.fileTree.getroot()
+        self.afflictionFileTree = ET.parse(self.afflictionsFile)
+        rootAffli = self.afflictionFileTree.getroot()
+
         for talentTree in self.talentTrees:
             talentTree.parseTalentDetails(root)
+            talentTree.parseAfflictionDetails(rootAffli)
 
     def verifyTalents(self):
         for tree in self.talentTrees:
@@ -57,13 +65,21 @@ class Character:
         root = self.fileTree.getroot()
         element = root.find(f'Talent[@identifier="{talent.element.attrib["identifier"]}"]')
         root.remove(element)
+        if talent.afflictionElement is not None:
+            rootAffli = self.afflictionFileTree.getroot()
+            elementAffli = rootAffli.find(f'Affliction[@identifier="{talent.afflictionElement.attrib["identifier"]}"]')
+            rootAffli.remove(elementAffli)
 
     def addTalent(self, talent):
         self.fileTree.getroot().append(talent.element)
+        if talent.afflictionElement is not None:
+            self.afflictionFileTree.getroot().append(talent.afflictionElement)
 
     def save(self):
         with open(self.fileName, 'wb') as f:
             self.fileTree.write(f)
+        with open(self.afflictionsFile, 'wb') as f:
+            self.afflictionFileTree.write(f)
 
     def serialize(self):
         return {

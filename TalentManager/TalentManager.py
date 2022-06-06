@@ -61,6 +61,7 @@ class TalentManager:
         self.characters[destinationCharacter].save()
         self.save()
 
+
     def parseInput(self, input):
         # talentManager.move('engineer:weaponsengineer:1:militaryapplications->engineer:electrician:1')
         source, destination = input.split('->')

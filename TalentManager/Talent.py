@@ -5,9 +5,13 @@ class Talent:
         self.name = name
         self.level = level
         self.element = None
+        self.afflictionName = None
+        self.afflictionElement = None
 
     def parseDetails(self, tree):
         self.element = tree.find(f'Talent[@identifier="{self.name}"]')
+        try: self.afflictionName = self.element.find("AbilityGroupInterval").find("Abilities").find("CharacterAbilityApplyStatusEffects").find("StatusEffects").find("StatusEffect").find("Affliction").attrib['identifier']
+        except AttributeError: pass
 
     def serialize(self):
         return {
@@ -16,6 +20,9 @@ class Talent:
             'description': locale[self.name]['description'],
             'level': self.level,
         }
+
+    def parseAfflictionDetails(self, tree):
+        self.afflictionElement = tree.find(f'Affliction[@identifier="{self.afflictionName}"]')
 
     def __str__(self):
         return f'\t{self.name} {self.level}'

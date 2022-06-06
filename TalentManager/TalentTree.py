@@ -12,6 +12,7 @@ class TalentTree:
             talentLevel += 1
             for talent in talentRow:
                 talentName = talent.attrib['identifier']
+                # talentAffliction =find(f'Talent[@identifier="{self.name}"]')
                 talentObj = Talent(talentName, talentLevel)
                 self.talents.append(talentObj)
 
@@ -34,6 +35,10 @@ class TalentTree:
                 talent = talentIt
                 break
         return talent
+
+    def parseAfflictionDetails(self, tree):
+        for talent in self.talents:
+            talent.parseAfflictionDetails(tree)
 
     def serialize(self):
         return {
