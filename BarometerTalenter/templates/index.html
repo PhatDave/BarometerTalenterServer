@@ -92,7 +92,6 @@
                             talentRowContainer.append(talentElement);
                         })
 
-                         {#add talents to row container jel by row#}
 						talentTreeContainer.append(talentTree);
 					})
 
@@ -131,7 +130,7 @@
 
             createTalent(talent) {
                 let element = `<div class="talent py-3 flex-even text-center">
-							<span>${talent.name}</span>
+							<span>${talent.localizedName}</span>
 						</div>`
 	            return $(element);
             }
