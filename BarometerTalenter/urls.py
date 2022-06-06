@@ -19,5 +19,5 @@ from BarometerTalenter import views
 app_name = 'talenter'
 urlpatterns = [
 	path('', views.index, name='index'),
-	path('submitFileName/', views.submitFileName, name='submitFileName'),
+	path('submitFileName/', views.getTalents, name='getTalents'),
 ]
