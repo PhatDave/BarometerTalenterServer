@@ -16,8 +16,13 @@ def index(request):
 
 def getTalents(request):
 	global talentManager
-	# talentManager = TalentManager(request.POST['path'])
+	talentManager = TalentManager(request.POST['path'])
 	# talentManager.move('engineer:weaponsengineer:1:militaryapplications->mechanic:machinist:1')
 	# print(json.dumps(talentManager.serialize()))
 	# return HttpResponse(json.dumps(talentManager.serialize()), content_type="application/json")
 	return HttpResponse(cache.get())
+
+def move(request):
+	global talentManager
+	talentManager.move(request.POST['moveCommand'])
+	return HttpResponse({"Ok": "True"}, content_type="application/json")

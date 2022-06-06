@@ -79,14 +79,14 @@
                 $.each(this.data, (key) => {
                     let character = this.data[key];
 
-                    let characterString = character.name + ":";
+                    let characterString = character.name
                     const characterContainer = this.createCharacterContainer(character, characterString);
                     const talentTreeContainer = this.createTalentTreeContainer();
                     characterContainer.append(talentTreeContainer);
 
                     $.each(character.trees, (treeKey) => {
                         let tree = character.trees[treeKey];
-                        let treeString = characterString + tree.name + ":";
+                        let treeString = characterString + "_" + tree.name
                         const talentTree = this.createTalentTree(tree, treeString);
                         let talentRowContainer;
 
@@ -98,10 +98,10 @@
                                     talentTree.append(talentRowContainer);
                                 }
                                 level = talent.level;
-                                let rowString = treeString + level + ":";
+                                let rowString = treeString + "_" + level
                                 talentRowContainer = this.createTalentTreeRowContainer(rowString);
                             }
-                            let talentString = treeString + level + ":" + talent.name;
+                            let talentString = treeString + "_" + level + "_" + talent.name;
                             let talentElement = this.createTalent(talent, talentString);
                             talentRowContainer.append(talentElement);
                         })
@@ -120,9 +120,34 @@
                         let movedElement = ui.draggable;
 				        let dropzone = $(this);
 
-				        console.log(dropzone);
-				        console.log(movedElement);
-					}
+				        let destination = dropzone.attr('id');
+                        let source = movedElement.attr('id');
+
+                        let moveCommand = `${source}->${destination}`;
+                        // Todo: ship this command to backend
+						console.log(moveCommand);
+
+                        let row = movedElement.parent();
+                        // These are not necessary yet
+                        // let tree = row.parent();
+                        // let character = tree.parent().parent();
+
+                        let talentName = movedElement.attr('id').split('_')[3];
+                        let newId = row.attr('id') + '_' + talentName;
+						movedElement.attr('id', newId);
+
+                        $.ajax({
+							url: '{% url 'talenter:move' %}',
+							type: 'POST',
+							data: {
+                                csrfmiddlewaretoken: "{{ csrf_token }}",
+								moveCommand: moveCommand
+							},
+							success: function(data) {
+								console.log(data);
+							}
+						});
+                    }
 				});
             }
 

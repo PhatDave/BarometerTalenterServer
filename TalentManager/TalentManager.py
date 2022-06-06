@@ -46,8 +46,8 @@ class TalentManager:
         sourceCharacter, sourceTree, sourceLevel, sourceTalentName, destinationCharacter, destinationTree, destinationLevel = self.parseInput(input)
         print(f"Moving {sourceTalentName} from {sourceCharacter}'s {sourceTree} tree to {destinationCharacter}'s {destinationTree} tree")
 
-        _, _, sourceRow, sourceTalent = self.find(f'{sourceCharacter}:{sourceTree}:{sourceLevel}:{sourceTalentName}')
-        _, _, destinationRow, _ = self.find(f'{destinationCharacter}:{destinationTree}:{destinationLevel}:*')
+        _, _, sourceRow, sourceTalent = self.find(f'{sourceCharacter}_{sourceTree}_{sourceLevel}_{sourceTalentName}')
+        _, _, destinationRow, _ = self.find(f'{destinationCharacter}_{destinationTree}_{destinationLevel}_*')
 
         destinationRow.append(sourceTalent)
         sourceRow.remove(sourceTalent)
@@ -64,12 +64,12 @@ class TalentManager:
     def parseInput(self, input):
         # talentManager.move('engineer:weaponsengineer:1:militaryapplications->engineer:electrician:1')
         source, destination = input.split('->')
-        sourceCharacter, sourceTree, sourceLevel, sourceTalent = source.split(':')
-        destinationCharacter, destinationTree, destinationLevel = destination.split(':')
+        sourceCharacter, sourceTree, sourceLevel, sourceTalent = source.split('_')
+        destinationCharacter, destinationTree, destinationLevel = destination.split('_')
         return sourceCharacter, sourceTree, sourceLevel, sourceTalent, destinationCharacter, destinationTree, destinationLevel
 
     def find(self, input):
-        lfCharacter, lfTree, lfRow, lfTalent = input.split(':')
+        lfCharacter, lfTree, lfRow, lfTalent = input.split('_')
         try: lfRow = int(lfRow)
         except ValueError: lfRow = 0
 

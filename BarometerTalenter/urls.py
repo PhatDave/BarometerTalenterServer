@@ -20,4 +20,5 @@ app_name = 'talenter'
 urlpatterns = [
 	path('', views.index, name='index'),
 	path('submitFileName/', views.getTalents, name='getTalents'),
+	path('move', views.move, name='move'),
 ]
