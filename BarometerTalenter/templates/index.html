@@ -27,95 +27,6 @@
 <div>
 	{# <input id="fileInputTextjel" type="text" name="input" placeholder="Deder path"> #}
 	<div class="row m-0" id="content">
-		<div class="col-6 characterContainer d-flex flex-column justify-content-start px-1">
-			<h2 class="characterName text-center">name jel</h2>
-			<div class="characterTreesContainer d-flex flex-row justify-content-between">
-				<div class="talentTree d-flex flex-column justify-content-start px-1">
-					<div class="talentTreeName text-center">
-						<h3>talent tree 1</h3>
-					</div>
-					<div class="talentRowContainer d-flex flex-row justify-content-evenly">
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-					</div>
-				</div>
-				<div class="talentTree d-flex flex-column justify-content-start px-1">
-					<div class="talentTreeName text-center">
-						<h3>talent tree 1</h3>
-					</div>
-					<div class="talentRowContainer d-flex flex-row justify-content-evenly">
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-					</div>
-				</div>
-				<div class="talentTree d-flex flex-column justify-content-start px-1">
-					<div class="talentTreeName text-center">
-						<h3>talent tree 1</h3>
-					</div>
-					<div class="talentRowContainer d-flex flex-row justify-content-evenly">
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-						<div class="talent">
-							<span>test 123 jel</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 <script>
@@ -165,10 +76,23 @@
 					$.each(character.trees, (treeKey) => {
 						let tree = character.trees[treeKey];
 						const talentTree = this.createTalentTree(tree);
-                        const talentRowContainer = this.createTalentTreeRowContainer();
+                        let talentRowContainer;
+
+                        let level = 0;
+                        $.each(tree.talents, (i) => {
+	                        let talent = tree.talents[i];
+                            if (talent.level != level) {
+                                if (level > 0) {
+                                    talentTree.append(talentRowContainer);
+                                }
+                                level = talent.level;
+                                talentRowContainer = this.createTalentTreeRowContainer();
+                            }
+							let talentElement = this.createTalent(talent);
+                            talentRowContainer.append(talentElement);
+                        })
 
                          {#add talents to row container jel by row#}
-
 						talentTreeContainer.append(talentTree);
 					})
 
@@ -207,6 +131,13 @@
                 let element = `<div class="talentRowContainer d-flex flex-row justify-content-evenly">
 					</div>`;
 				return $(element);
+            }
+
+            createTalent(talent) {
+                let element = `<div class="talent py-3 flex-even text-center">
+							<span>${talent.name}</span>
+						</div>`
+	            return $(element);
             }
         }
 	})
