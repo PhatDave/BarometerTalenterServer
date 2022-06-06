@@ -110,15 +110,20 @@
                 });
                 $(".talent").tooltip();
                 $(".talent").draggable();
-                $(".talentRowContainer").droppable({
-                    drop: function (event, ui) {
-                        let movedElement = ui.draggable;
-                        let dropzone = $(this);
+				$('.talentRowContainer').droppable({
+					drop: function(ev, ui) {
+						$(ui.draggable).detach().css({top: 0,left: 0}).appendTo(this);
+					}
+				});
+                // $(".talentRowContainer").droppable({
+                //     drop: function (event, ui) {
+                //         let movedElement = ui.draggable;
+                //         let dropzone = $(this);
 
-                        console.log(dropzone);
-						console.log(movedElement);
-                    }
-                });
+                //         console.log(dropzone);
+				// 		console.log(movedElement);
+                //     }
+                // });
             }
 
             createCharacterContainer(character) {
