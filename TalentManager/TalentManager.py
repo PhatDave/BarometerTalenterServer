@@ -94,6 +94,12 @@ class TalentManager:
         with open(f'{self.root}\\{self.talents}', 'wb') as f:
             self.talentsTree.write(f)
 
+    def serialize(self):
+        dict = {}
+        for character in self.characters.values():
+            dict[character.name] = character.serialize()
+        return dict
+
     def __str__(self):
         output = f"TalentManager ({self.getCount()}):\n"
         for character in self.characters.values():

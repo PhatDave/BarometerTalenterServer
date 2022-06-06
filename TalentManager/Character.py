@@ -65,6 +65,13 @@ class Character:
         with open(self.fileName, 'wb') as f:
             self.fileTree.write(f)
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'count': self.getCount(),
+            'trees': [tree.serialize() for tree in self.talentTrees]
+        }
+
     def __str__(self):
         output = f'{self.characterSubstitutionTable[self.name]} ({self.getCount()}):\n'
         for tree in self.talentTrees:

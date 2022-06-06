@@ -7,5 +7,11 @@ class Talent:
     def parseDetails(self, tree):
         self.element = tree.find(f'Talent[@identifier="{self.name}"]')
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'level': self.level,
+        }
+
     def __str__(self):
         return f'\t{self.name} {self.level}'

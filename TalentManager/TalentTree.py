@@ -35,6 +35,12 @@ class TalentTree:
                 break
         return talent
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'talents': [talent.serialize() for talent in self.talents]
+        }
+
     def __str__(self):
         output = f'{self.name} ({self.getCount()}):\n'
         for talent in self.talents:
