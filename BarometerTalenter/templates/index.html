@@ -31,7 +31,9 @@
 </div>
 <script>
 	$(document).ready(function() {
+        let iconSize = 64;
         let inputField = $("#fileInputTextjel");
+
         inputField.keypress(function(key) {
             if (key.which === 13) {
                 submitPath(inputField.val());
@@ -89,6 +91,7 @@
 							let talentElement = this.createTalent(talent);
                             talentRowContainer.append(talentElement);
                         })
+						talentTree.append(talentRowContainer);
 
 						talentTreeContainer.append(talentTree);
 					})
@@ -128,7 +131,7 @@
 
             createTalent(talent) {
                 let element = `<div class="talent py-3 flex-even text-center">
-							<span>${talent.localizedName}</span>
+							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}">
 						</div>`
 	            return $(element);
             }
