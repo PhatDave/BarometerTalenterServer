@@ -109,6 +109,16 @@
                     container.append(characterContainer);
                 });
                 $(".talent").tooltip();
+                $(".talent").draggable();
+                $(".talentRowContainer").droppable({
+                    drop: function (event, ui) {
+                        let movedElement = ui.draggable;
+                        let dropzone = $(this);
+
+                        console.log(dropzone);
+						console.log(movedElement);
+                    }
+                });
             }
 
             createCharacterContainer(character) {
@@ -141,24 +151,24 @@
             }
 
             createTalent(talent) {
-                let element = `<div class="talent py-3 flex-even text-center">
+                let element = `<div id="${talent.name}" class="talent py-3 flex-even text-center">
 							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
 						</div>`
                 return $(element);
             }
 
-			addTooltipsToAllTalents() {
+            addTooltipsToAllTalents() {
                 {# This trash doesn't really work at all #}
                 const talents = this.getAllTalents();
                 $.each(talents, (key) => {
                     const talent = talents[key];
                     const talentElement = $(`#${talent.name}`)[0];
 
-		            tippy(talentElement, {
-	                    content: `<h4><b>${talent.localizedName}</b></h4><p>${talent.description}</p>`,
-			            allowHTML: true,
-			            followCursor: true,
-	                });
+                    tippy(talentElement, {
+                        content: `<h4><b>${talent.localizedName}</b></h4><p>${talent.description}</p>`,
+                        allowHTML: true,
+                        followCursor: true,
+                    });
                 })
             }
 
