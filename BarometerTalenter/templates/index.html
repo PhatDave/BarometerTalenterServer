@@ -9,7 +9,6 @@
 	        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
 	        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-	<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 	<style>
         .talent {
@@ -109,7 +108,7 @@
 
                     container.append(characterContainer);
                 });
-                $(document).tooltip();
+                $(".talent").tooltip();
             }
 
             createCharacterContainer(character) {
@@ -143,9 +142,39 @@
 
             createTalent(talent) {
                 let element = `<div class="talent py-3 flex-even text-center">
-							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}">
+							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
 						</div>`
                 return $(element);
+            }
+
+			addTooltipsToAllTalents() {
+                {# This trash doesn't really work at all #}
+                const talents = this.getAllTalents();
+                $.each(talents, (key) => {
+                    const talent = talents[key];
+                    const talentElement = $(`#${talent.name}`)[0];
+
+		            tippy(talentElement, {
+	                    content: `<h4><b>${talent.localizedName}</b></h4><p>${talent.description}</p>`,
+			            allowHTML: true,
+			            followCursor: true,
+	                });
+                })
+            }
+
+            getAllTalents() {
+                let talents = [];
+                $.each(this.data, (key) => {
+                    const character = this.data[key];
+                    $.each(character.trees, (key2) => {
+                        const tree = character.trees[key2];
+                        $.each(tree.talents, (key3) => {
+                            const talent = tree.talents[key3];
+                            talents.push(talent);
+                        })
+                    })
+                })
+                return talents;
             }
         }
     })
