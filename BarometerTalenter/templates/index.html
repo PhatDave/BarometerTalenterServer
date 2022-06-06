@@ -31,8 +31,6 @@
 </div>
 <script>
 	$(document).ready(function() {
-        let talentData = {};
-
         let inputField = $("#fileInputTextjel");
         inputField.keypress(function(key) {
             if (key.which === 13) {
@@ -62,7 +60,7 @@
 
         class UIManager {
             constructor(data) {
-                this.data = data;
+                this.data = JSON.parse(data);
             }
 
             build(container) {
@@ -100,7 +98,7 @@
             }
 
 	        createCharacterContainer(character) {
-	            let element = `<div class="col-12 characterContainer d-flex flex-column justify-content-start px-1 py-3">
+	            let element = `<div class="col-6 characterContainer d-flex flex-column justify-content-start px-1 py-3">
 					<h2 class="characterName text-center">${character.name}</h2>
 				</div>`;
 
