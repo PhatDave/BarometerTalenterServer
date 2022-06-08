@@ -1,3 +1,4 @@
+{% load static %}
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,32 +11,52 @@
 	        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    {% block title %}
+    <title>Barotrauma Talents Index</title>
+    {% endblock %}
 	<style>
-        html, body {height: 100vh;
+        html, body {
+            height: 100vh;
+            max-width: 100vw;
             overflow: hidden;
-            background-color: #000000;
-            background-image: linear-gradient(to top, #000000 0%, #04619f 74%);
+            background-color: #000;
+            background-image: linear-gradient(to bottom, #F0F2F0, #000C40);
         }
-        .talent {
-            border: 1px solid red;
-        }
+
+        /* .imageWrapper {
+            border-radius: 2rem;
+            background: rgba(40, 37, 113, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        } */
 
         .talentTree {
-            border: 1px solid blue;
+            background: rgba(40, 37, 113, 0.3);
+            border-radius: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(40, 37, 113, 0.1);
+            text-shadow: 0 0 6px darkblue;
+            color: #000;
         }
 
-        .characterTreesContainer {
-            border: 1px solid green;
+        .characterTreesContainer .display-5 {
+            text-shadow: 0 0 15px #000;
+            color: #fff;
         }
 
         .characterContainer {
-            border: 1px solid black;
+            background: rgba(40, 37, 113, 0.3);
+            border-radius: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(40, 37, 113, 0.1);
+            text-shadow: 0 0 6px darkblue;
+            color: #000;
         }
 
         .rowCharContainer {
             height: 100vh;
             scroll-snap-align: start;
-            position: relative;
         }
 
         .flex-even {
@@ -44,14 +65,16 @@
 
         .talentRowContainer {
             min-height: 98px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 2rem;
         }
 
         #content {
             overflow-y: auto;
             height: 100vh;
-            scroll-snap-points-y: repeat(100vh);
             scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+            scroll-snap-points-y: repeat(100%);
+            scroll-snap-destination: 0 0;
         }
         .navbar {
             max-height: 5vh;
@@ -59,8 +82,6 @@
             border-bottom-right-radius: 2rem;
             background: rgba(0, 0, 0, 0.5);
             transition: all 0.5s ease;
-            /* border-top-left-radius: 2rem;
-            border-top-right-radius: 2rem; */
         }
         .navbar:hover {
             background: rgba(0, 0, 0, 0.7);
@@ -89,8 +110,10 @@
 </div>
 <script>
     $(document).ready(function () {
+
         let iconSize = 64;
         let inputField = $("#fileInputTextjel");
+        var dictOfClasses = {}, i = 1;
 
         inputField.keypress(function (key) {
             if (key.which === 13) {
@@ -123,6 +146,12 @@
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
+        document.addEventListener("keypress", function(e) {
+            for (const [key, value] of Object.entries(dictOfClasses)) {
+                if (e.key == key) window.location = "#" + value;
+            }
+        });
+
         class UIManager {
             constructor(data) {
                 // If data is a string then do nothing
@@ -133,10 +162,13 @@
 				}
             }
 
+
             build(container) {
                 $.each(this.data, (key) => {
                     let character = this.data[key];
                     let characterString = character.name
+                    dictOfClasses[i] = characterString;
+                    i++;
 
                     $("#navbarUl").append("<li class='nav-item'><a class='nav-link' href='#" + characterString + "''>" + capitalizeFirstLetter(characterString) + "</a></li>");
 
@@ -213,8 +245,8 @@
 
             createCharacterContainer(character, characterString) {
                 let element = `<div class="row justify-content-between align-items-center rowCharContainer">
-                <div id="${characterString}" class="characterContainer px-1 py-3">
-					<h2 class="mt-5 characterName text-center">${character.name.toUpperCase()}</h2>
+                <div id="${characterString}" class="characterContainer col-6 mt-5 mx-auto px-1 py-3">
+					<h2 class="display-1 characterName text-center">${character.name.toUpperCase()}</h2>
 				</div></div>`;
 
                 return $(element);
@@ -227,24 +259,27 @@
             }
 
             createTalentTree(ttree, ttreeString) {
-                let element = `<div id="${ttreeString}" class="talentTree d-flex flex-column justify-content-start px-1 flex-even">
+                let element = `<div id="${ttreeString}" class="talentTree mx-2 d-flex flex-column justify-content-start px-1 flex-even">
 						<div class="talentTreeName text-center">
-							<h3>${ttree.name}</h3>
+							<h3 class="display-5 p-3">${ttree.name.toUpperCase()}</h3>
+                            <hr class="w-75 text-white-50 mx-auto">
 						</div>
 					</div>`;
                 return $(element);
             }
 
             createTalentTreeRowContainer(rowString) {
-                let element = `<div id="${rowString}" class="talentRowContainer d-flex flex-row justify-content-evenly">
+                let element = `<div id="${rowString}" class="talentRowContainer my-1 d-flex flex-row justify-content-evenly">
 					</div>`;
                 return $(element);
             }
 
             createTalent(talent, talentString) {
-                let element = `<div id="${talentString}" class="talent py-3 flex-even text-center">
-							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
-						</div>`
+                let element = `<div id="${talentString}" class="talent flex-even text-center m-2">
+                    <div class="imageWrapper p-2">
+							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">                        
+						</div>                        
+                    </div>`
                 return $(element);
             }
 
