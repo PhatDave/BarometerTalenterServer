@@ -198,7 +198,7 @@
 
             createTalent(talent, talentString) {
                 let element = `<div id="${talentString}" class="talent py-3 flex-even text-center">
-							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName}\n\n${talent.description}">
+							<img src="static/images/${talent.name}.png" width="${iconSize}" height="${iconSize}" title="${talent.localizedName} (${talent.name})\n\n${talent.description}">
 						</div>`
                 return $(element);
             }
